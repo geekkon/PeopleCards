@@ -15,6 +15,9 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
 
 @interface TPPDataController ()
 
+@property (copy, nonatomic) TPPDataControllerCompletion completion;
+
+@property (strong, nonatomic) TPPRequestManager *requestManager;
 @property (strong, nonatomic) TPPParser *parser;
 
 @end
@@ -28,6 +31,15 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     return [TPPCoreDataManager sharedManager].context;
 }
 
+- (TPPRequestManager *)requestManager {
+    
+    if (!_requestManager) {
+        _requestManager = [[TPPRequestManager alloc] init];
+    }
+    
+    return _requestManager;
+}
+
 - (TPPParser *)parser {
     
     if (!_parser) {
@@ -39,17 +51,24 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
 
 #pragma mark - Public
 
-- (void)reloadData {
+- (void)reloadDataWithCompletion:(TPPDataControllerCompletion)completion {
     
-    [[TPPCoreDataManager sharedManager] clearData];
+    if (!completion) {
+        return;
+    }
+    
+    self.completion = completion;
+    
+
+//    [[TPPCoreDataManager sharedManager] clearData];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URL]];
     
     [self loadDataWithRequest:request];
 }
 
-- (void)removeObject:(id)object {
-    
+- (void)removeObject:(TPPPerson *)person {
+
 }
 
 #pragma mark - Private
@@ -58,13 +77,11 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     
     __weak typeof(self) weakSelf = self;
     
-    [[[TPPRequestManager alloc] init] loadDataWithRequest:request completion:^(NSData *data, NSError *error) {
+    [self.requestManager loadDataWithRequest:request completion:^(NSData *data, NSError *error) {
         
         if (error) {
-            
-            NSLog(@"Error handling should place to controller %@", [error localizedDescription]);
+            weakSelf.completion(NO, error);
         } else {
-            
             [weakSelf parseData:data];
         }
     }];
@@ -77,16 +94,19 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     [self.parser parseData:data completion:^(NSArray *objects, NSError *error) {
         
         if (error) {
-            
-            NSLog(@"Error handling should place to controller %@", [error localizedDescription]);
-
+            weakSelf.completion(NO, error);
         } else {
-            
-            NSLog(@"%@", objects);
+            [weakSelf addObjects:objects];
         }
     }];
 }
 
+- (void)addObjects:(NSArray *)objects {
+    
+    [[TPPCoreDataManager sharedManager] addObjects:objects];
+    
+    self.completion(YES, nil);
+}
 
 
 @end

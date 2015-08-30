@@ -14,32 +14,21 @@
     
     TPPParsedPerson *parsedPerson = [[TPPParsedPerson alloc] init];
     
+    parsedPerson.personID = dictionary[@"_id"];
+    parsedPerson.active = [dictionary[@"isActive"] boolValue];
+    parsedPerson.pictureURL = dictionary[@"picture"];
+    parsedPerson.age = [dictionary[@"age"] integerValue];
     parsedPerson.name = dictionary[@"name"];
+    parsedPerson.gender = dictionary[@"gender"];
+    parsedPerson.email = dictionary[@"email"];
+    parsedPerson.phone = dictionary[@"phone"];
+    parsedPerson.address = dictionary[@"address"];
+    parsedPerson.registered = dictionary[@"registered"];
     
-    
-//    parsedObject.name = JSON[@"name"];
-//    parsedObject.country = JSON[@"sys"][@"country"];
-//    parsedObject.cityID =  JSON[@"id"] ;
-//    parsedObject.lon = JSON[@"coord"][@"lon"];
-//    parsedObject.lat = JSON[@"coord"][@"lat"];
-//    
-//    NSArray *weather = JSON[@"weather"];
-//    
-//    if ([weather firstObject]) {
-//        parsedObject.conditionID = [weather firstObject][@"id"];
-//        parsedObject.icon = [weather firstObject][@"icon"];
-//        parsedObject.info = [weather firstObject][@"description"];
-//        parsedObject.main = [weather firstObject][@"main"];
-//    }
-//    
-//    parsedObject.temp = JSON[@"main"][@"temp"];
-//    parsedObject.updateTime = JSON[@"dt"];
+    NSLog(@"%@ %@", parsedPerson.name, parsedPerson.pictureURL);
+
     
     return parsedPerson;
-}
-
-- (NSString *)description {
-    return self.name;
 }
 
 @end

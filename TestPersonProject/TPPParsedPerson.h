@@ -11,9 +11,9 @@
 @interface TPPParsedPerson : NSObject
 
 @property (strong, nonatomic) NSString *personID;
-@property (strong, nonatomic) NSNumber *active;
+@property (nonatomic)         BOOL      active;
 @property (strong, nonatomic) NSString *pictureURL;
-@property (strong, nonatomic) NSNumber *age;
+@property (nonatomic)         int16_t   age;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *email;

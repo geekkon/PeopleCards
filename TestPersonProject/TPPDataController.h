@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class NSManagedObjectContext;
+@class NSManagedObjectContext, TPPPerson;
+
+typedef void (^TPPDataControllerCompletion)(BOOL success, NSError *error);
 
 @interface TPPDataController : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 
-- (void)reloadData;
+- (void)reloadDataWithCompletion:(TPPDataControllerCompletion)completion;
 
-- (void)removeObject:(id)object;
+- (void)removeObject:(TPPPerson *)person;
 
 @end

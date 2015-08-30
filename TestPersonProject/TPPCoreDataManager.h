@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TPPParsedPerson;
+
 @interface TPPCoreDataManager : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
@@ -17,8 +19,6 @@
 - (void)clearData;
 
 - (void)addObjects:(NSArray *)objects;
-- (void)removeObject:(id)object;
-
-
+- (void)removeObject:(TPPParsedPerson *)object;
 
 @end

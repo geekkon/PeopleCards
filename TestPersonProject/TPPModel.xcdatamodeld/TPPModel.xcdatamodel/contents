@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="TPPPerson" representedClassName="" syncable="YES">
+    <entity name="TPPPerson" representedClassName="TPPPerson" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>

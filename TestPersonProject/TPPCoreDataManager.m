@@ -9,6 +9,8 @@
 @import CoreData;
 
 #import "TPPCoreDataManager.h"
+#import "TPPPerson.h"
+#import "TPPParsedPerson.h"
 
 @interface TPPCoreDataManager ()
 
@@ -34,15 +36,30 @@
 
 - (void)clearData {
     
-    NSLog(@"Data cleared!!!");
+    NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
+    
+    NSError *error = nil;
+    
+    NSURL *storeURL = store.URL;
+    
+    [self.persistentStoreCoordinator removePersistentStore:store error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+    
+    self.persistentStoreCoordinator = nil;
 }
 
 - (void)addObjects:(NSArray *)objects {
     
+    for (TPPParsedPerson *parsedPerson in objects) {
+        
+        [TPPPerson createPersonWithParsedPerson:parsedPerson inContext:self.managedObjectContext];
+    }
+    
+//    [self saveContext];
 }
 
-- (void)removeObject:(id)object {
-    
+- (void)removeObject:(TPPParsedPerson *)object {
+
 }
 
 #pragma mark - Getters

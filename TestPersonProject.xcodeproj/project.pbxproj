@@ -21,6 +21,7 @@
 		32FA3CEA1B93568200F7A0D6 /* TPPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CE91B93568200F7A0D6 /* TPPRequestManager.m */; };
 		32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */; };
 		32FA3CF01B93605F00F7A0D6 /* TPPParsedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */; };
+		32FA3CF41B93664F00F7A0D6 /* TPPPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CF31B93664F00F7A0D6 /* TPPPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPParser.m; sourceTree = "<group>"; };
 		32FA3CEE1B93605F00F7A0D6 /* TPPParsedPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPParsedPerson.h; sourceTree = "<group>"; };
 		32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPParsedPerson.m; sourceTree = "<group>"; };
+		32FA3CF21B93664F00F7A0D6 /* TPPPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPPerson.h; sourceTree = "<group>"; };
+		32FA3CF31B93664F00F7A0D6 /* TPPPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 		32FA3CE11B93523400F7A0D6 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				32FA3CF21B93664F00F7A0D6 /* TPPPerson.h */,
+				32FA3CF31B93664F00F7A0D6 /* TPPPerson.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				32FA3CA71B93450800F7A0D6 /* main.m in Sources */,
 				32FA3CEA1B93568200F7A0D6 /* TPPRequestManager.m in Sources */,
 				32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */,
+				32FA3CF41B93664F00F7A0D6 /* TPPPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

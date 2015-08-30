@@ -11,6 +11,7 @@
 #import <CoreData/NSFetchRequest.h>
 #import <CoreData/NSEntityDescription.h>
 #import "TPPDataController.h"
+#import "TPPPerson.h"
 
 
 @interface TPPPeopleTableViewController () <NSFetchedResultsControllerDelegate>
@@ -24,8 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.dataController reloadDataWithCompletion:^(BOOL success, NSError *error) {
 
-    [self.dataController reloadData];
+    }];
     
 }
 
@@ -53,21 +56,21 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson"
-                                      inManagedObjectContext:self.dataController.context];
+    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson" inManagedObjectContext:self.dataController.context];
     
-    fetchRequest.fetchBatchSize = 10;
+    fetchRequest.fetchBatchSize = 20;
     
     
-    NSSortDescriptor *titleDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                      ascending:YES];
-    
-    fetchRequest.sortDescriptors = @[titleDescriptor];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    NSSortDescriptor *ageDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:YES];
+
+    fetchRequest.sortDescriptors = @[ageDescriptor, nameDescriptor];
     
     _fetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:self.dataController.context
-                                          sectionNameKeyPath:nil                                                   cacheName:nil];
+                                          sectionNameKeyPath:nil
+                                                   cacheName:nil];
     
     _fetchedResultsController.delegate = self;
     
@@ -147,10 +150,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-//    RSSChannel *channel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    
-//    cell.textLabel.text = channel.title;
-//    cell.detailTextLabel.text = channel.channel;
+    TPPPerson *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = person.name;
+    cell.detailTextLabel.text = person.email;
 }
 
 
