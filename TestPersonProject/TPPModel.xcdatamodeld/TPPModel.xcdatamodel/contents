@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Person" syncable="YES">
-        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="TPPPerson" representedClassName="" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="personID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="registered" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="personID" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="pictureURL" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="registered" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="TPPPerson" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

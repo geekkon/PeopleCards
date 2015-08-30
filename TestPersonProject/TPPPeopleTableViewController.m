@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.dataController updateData];
+    [self.dataController reloadData];
     
 }
 
@@ -53,13 +53,13 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPeople"
+    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson"
                                       inManagedObjectContext:self.dataController.context];
     
     fetchRequest.fetchBatchSize = 10;
     
     
-    NSSortDescriptor *titleDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title"
+    NSSortDescriptor *titleDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                       ascending:YES];
     
     fetchRequest.sortDescriptors = @[titleDescriptor];
@@ -89,7 +89,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChannelCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
     

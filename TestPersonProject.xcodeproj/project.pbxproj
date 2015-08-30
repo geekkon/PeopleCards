@@ -17,6 +17,10 @@
 		32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */; };
 		32FA3CD71B934A1C00F7A0D6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FA3CD61B934A1C00F7A0D6 /* CoreData.framework */; };
 		32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CDB1B934C8800F7A0D6 /* TPPModel.xcdatamodeld */; };
+		32FA3CE71B93537900F7A0D6 /* TPPCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CE61B93537900F7A0D6 /* TPPCoreDataManager.m */; };
+		32FA3CEA1B93568200F7A0D6 /* TPPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CE91B93568200F7A0D6 /* TPPRequestManager.m */; };
+		32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */; };
+		32FA3CF01B93605F00F7A0D6 /* TPPParsedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,14 @@
 		32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPPeopleTableViewController.m; sourceTree = "<group>"; };
 		32FA3CD61B934A1C00F7A0D6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		32FA3CDC1B934C8800F7A0D6 /* TPPModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TPPModel.xcdatamodel; sourceTree = "<group>"; };
+		32FA3CE51B93537900F7A0D6 /* TPPCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPCoreDataManager.h; sourceTree = "<group>"; };
+		32FA3CE61B93537900F7A0D6 /* TPPCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPCoreDataManager.m; sourceTree = "<group>"; };
+		32FA3CE81B93568200F7A0D6 /* TPPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPRequestManager.h; sourceTree = "<group>"; };
+		32FA3CE91B93568200F7A0D6 /* TPPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPRequestManager.m; sourceTree = "<group>"; };
+		32FA3CEB1B935CA300F7A0D6 /* TPPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPParser.h; sourceTree = "<group>"; };
+		32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPParser.m; sourceTree = "<group>"; };
+		32FA3CEE1B93605F00F7A0D6 /* TPPParsedPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPParsedPerson.h; sourceTree = "<group>"; };
+		32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPParsedPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +152,16 @@
 			isa = PBXGroup;
 			children = (
 				32FA3CDB1B934C8800F7A0D6 /* TPPModel.xcdatamodeld */,
+				32FA3CE11B93523400F7A0D6 /* Entity */,
 				32FA3CCB1B9346E200F7A0D6 /* TPPDataController.h */,
 				32FA3CCC1B9346E200F7A0D6 /* TPPDataController.m */,
+				32FA3CE51B93537900F7A0D6 /* TPPCoreDataManager.h */,
+				32FA3CE61B93537900F7A0D6 /* TPPCoreDataManager.m */,
+				32FA3CE81B93568200F7A0D6 /* TPPRequestManager.h */,
+				32FA3CE91B93568200F7A0D6 /* TPPRequestManager.m */,
+				32FA3CEB1B935CA300F7A0D6 /* TPPParser.h */,
+				32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */,
+				32FA3CF11B93606D00F7A0D6 /* PONSO */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -153,6 +173,22 @@
 				32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		32FA3CE11B93523400F7A0D6 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		32FA3CF11B93606D00F7A0D6 /* PONSO */ = {
+			isa = PBXGroup;
+			children = (
+				32FA3CEE1B93605F00F7A0D6 /* TPPParsedPerson.h */,
+				32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */,
+			);
+			name = PONSO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,11 +292,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FA3CF01B93605F00F7A0D6 /* TPPParsedPerson.m in Sources */,
 				32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */,
 				32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */,
 				32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */,
 				32FA3CCD1B9346E200F7A0D6 /* TPPDataController.m in Sources */,
+				32FA3CE71B93537900F7A0D6 /* TPPCoreDataManager.m in Sources */,
 				32FA3CA71B93450800F7A0D6 /* main.m in Sources */,
+				32FA3CEA1B93568200F7A0D6 /* TPPRequestManager.m in Sources */,
+				32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

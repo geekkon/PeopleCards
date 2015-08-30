@@ -1,5 +1,5 @@
 //
-//  TPPDataController.h
+//  TPPCoreDataManager.h
 //  TestPersonProject
 //
 //  Created by Dim on 30.08.15.
@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class NSManagedObjectContext;
-
-@interface TPPDataController : NSObject
+@interface TPPCoreDataManager : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 
-- (void)reloadData;
++ (TPPCoreDataManager *)sharedManager;
 
+- (void)clearData;
+
+- (void)addObjects:(NSArray *)objects;
 - (void)removeObject:(id)object;
+
+
 
 @end
