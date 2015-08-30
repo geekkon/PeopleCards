@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		32FA3CA71B93450800F7A0D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA61B93450800F7A0D6 /* main.m */; };
 		32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA91B93450800F7A0D6 /* AppDelegate.m */; };
-		32FA3CAD1B93450800F7A0D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CAC1B93450800F7A0D6 /* ViewController.m */; };
 		32FA3CB01B93450800F7A0D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FA3CAE1B93450800F7A0D6 /* Main.storyboard */; };
 		32FA3CB21B93450800F7A0D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32FA3CB11B93450800F7A0D6 /* Images.xcassets */; };
 		32FA3CB51B93450800F7A0D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FA3CB31B93450800F7A0D6 /* LaunchScreen.xib */; };
 		32FA3CC11B93450800F7A0D6 /* TestPersonProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CC01B93450800F7A0D6 /* TestPersonProjectTests.m */; };
+		32FA3CCD1B9346E200F7A0D6 /* TPPDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CCC1B9346E200F7A0D6 /* TPPDataController.m */; };
+		32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */; };
+		32FA3CD71B934A1C00F7A0D6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FA3CD61B934A1C00F7A0D6 /* CoreData.framework */; };
+		32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CDB1B934C8800F7A0D6 /* TPPModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +35,18 @@
 		32FA3CA61B93450800F7A0D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32FA3CA81B93450800F7A0D6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32FA3CA91B93450800F7A0D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		32FA3CAB1B93450800F7A0D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		32FA3CAC1B93450800F7A0D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		32FA3CAF1B93450800F7A0D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32FA3CB11B93450800F7A0D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32FA3CB41B93450800F7A0D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		32FA3CBA1B93450800F7A0D6 /* TestPersonProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestPersonProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FA3CBF1B93450800F7A0D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32FA3CC01B93450800F7A0D6 /* TestPersonProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPersonProjectTests.m; sourceTree = "<group>"; };
+		32FA3CCB1B9346E200F7A0D6 /* TPPDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPDataController.h; sourceTree = "<group>"; };
+		32FA3CCC1B9346E200F7A0D6 /* TPPDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPDataController.m; sourceTree = "<group>"; };
+		32FA3CD21B9347BC00F7A0D6 /* TPPPeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPPeopleTableViewController.h; sourceTree = "<group>"; };
+		32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPPeopleTableViewController.m; sourceTree = "<group>"; };
+		32FA3CD61B934A1C00F7A0D6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		32FA3CDC1B934C8800F7A0D6 /* TPPModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TPPModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FA3CD71B934A1C00F7A0D6 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +71,7 @@
 		32FA3C981B93450800F7A0D6 = {
 			isa = PBXGroup;
 			children = (
+				32FA3CD61B934A1C00F7A0D6 /* CoreData.framework */,
 				32FA3CA31B93450800F7A0D6 /* TestPersonProject */,
 				32FA3CBD1B93450800F7A0D6 /* TestPersonProjectTests */,
 				32FA3CA21B93450800F7A0D6 /* Products */,
@@ -83,9 +92,9 @@
 			children = (
 				32FA3CA81B93450800F7A0D6 /* AppDelegate.h */,
 				32FA3CA91B93450800F7A0D6 /* AppDelegate.m */,
-				32FA3CAB1B93450800F7A0D6 /* ViewController.h */,
-				32FA3CAC1B93450800F7A0D6 /* ViewController.m */,
-				32FA3CAE1B93450800F7A0D6 /* Main.storyboard */,
+				32FA3CCE1B9346E900F7A0D6 /* Model */,
+				32FA3CCA1B9345F000F7A0D6 /* View */,
+				32FA3CD51B9347CA00F7A0D6 /* Controller */,
 				32FA3CB11B93450800F7A0D6 /* Images.xcassets */,
 				32FA3CB31B93450800F7A0D6 /* LaunchScreen.xib */,
 				32FA3CA41B93450800F7A0D6 /* Supporting Files */,
@@ -117,6 +126,33 @@
 				32FA3CBF1B93450800F7A0D6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32FA3CCA1B9345F000F7A0D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32FA3CAE1B93450800F7A0D6 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		32FA3CCE1B9346E900F7A0D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32FA3CDB1B934C8800F7A0D6 /* TPPModel.xcdatamodeld */,
+				32FA3CCB1B9346E200F7A0D6 /* TPPDataController.h */,
+				32FA3CCC1B9346E200F7A0D6 /* TPPDataController.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		32FA3CD51B9347CA00F7A0D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32FA3CD21B9347BC00F7A0D6 /* TPPPeopleTableViewController.h */,
+				32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +256,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32FA3CAD1B93450800F7A0D6 /* ViewController.m in Sources */,
 				32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */,
+				32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */,
+				32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */,
+				32FA3CCD1B9346E200F7A0D6 /* TPPDataController.m in Sources */,
 				32FA3CA71B93450800F7A0D6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +465,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		32FA3CDB1B934C8800F7A0D6 /* TPPModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				32FA3CDC1B934C8800F7A0D6 /* TPPModel.xcdatamodel */,
+			);
+			currentVersion = 32FA3CDC1B934C8800F7A0D6 /* TPPModel.xcdatamodel */;
+			path = TPPModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 32FA3C991B93450800F7A0D6 /* Project object */;
 }

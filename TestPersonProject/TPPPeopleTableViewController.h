@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TPPPeopleTableViewController.h
 //  TestPersonProject
 //
 //  Created by Dim on 30.08.15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TPPPeopleTableViewController : UITableViewController
 
 @end
-
