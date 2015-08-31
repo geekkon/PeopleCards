@@ -25,9 +25,6 @@
     parsedPerson.address = dictionary[@"address"];
     parsedPerson.registered = dictionary[@"registered"];
     
-    NSLog(@"%@ %@", parsedPerson.name, parsedPerson.pictureURL);
-
-    
     return parsedPerson;
 }
 

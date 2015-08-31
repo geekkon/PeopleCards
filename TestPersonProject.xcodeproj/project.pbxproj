@@ -22,6 +22,7 @@
 		32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEC1B935CA300F7A0D6 /* TPPParser.m */; };
 		32FA3CF01B93605F00F7A0D6 /* TPPParsedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */; };
 		32FA3CF41B93664F00F7A0D6 /* TPPPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CF31B93664F00F7A0D6 /* TPPPerson.m */; };
+		32FA3CF71B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CF61B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		32FA3CEF1B93605F00F7A0D6 /* TPPParsedPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPParsedPerson.m; sourceTree = "<group>"; };
 		32FA3CF21B93664F00F7A0D6 /* TPPPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPPerson.h; sourceTree = "<group>"; };
 		32FA3CF31B93664F00F7A0D6 /* TPPPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPPerson.m; sourceTree = "<group>"; };
+		32FA3CF51B93D03500F7A0D6 /* TPPSortOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPSortOptionsTableViewController.h; sourceTree = "<group>"; };
+		32FA3CF61B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPSortOptionsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 			children = (
 				32FA3CD21B9347BC00F7A0D6 /* TPPPeopleTableViewController.h */,
 				32FA3CD31B9347BC00F7A0D6 /* TPPPeopleTableViewController.m */,
+				32FA3CF51B93D03500F7A0D6 /* TPPSortOptionsTableViewController.h */,
+				32FA3CF61B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32FA3CF01B93605F00F7A0D6 /* TPPParsedPerson.m in Sources */,
+				32FA3CF71B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m in Sources */,
 				32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */,
 				32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */,
 				32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */,
@@ -501,6 +507,7 @@
 				32FA3CC61B93450800F7A0D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32FA3CC71B93450800F7A0D6 /* Build configuration list for PBXNativeTarget "TestPersonProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +516,7 @@
 				32FA3CC91B93450800F7A0D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,7 @@
 //
 
 #import "TPPPeopleTableViewController.h"
+#import "TPPSortOptionsTableViewController.h"
 #import <CoreData/NSFetchedResultsController.h>
 #import <CoreData/NSFetchRequest.h>
 #import <CoreData/NSEntityDescription.h>
@@ -17,6 +18,7 @@
 @interface TPPPeopleTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) TPPDataController *dataController;
+@property (strong, nonatomic) NSArray *sortDescriptors;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -48,6 +50,46 @@
     return _dataController;
 }
 
+- (NSArray *)sortDescriptors {
+    
+    if (!_sortDescriptors) {
+        
+        NSArray *options = [self readOptionsFromUserDefaults];
+        
+        if (!options) {
+            options = [self writeDefaultOptionsToUserDefaults];
+        }
+                
+        _sortDescriptors = [self makeSortDescriptorsFromOptions:options];
+    }
+    
+    return _sortDescriptors;
+}
+
+#pragma mark - User Defaults Methods
+
+- (NSArray *)readOptionsFromUserDefaults {
+    
+    return [[NSUserDefaults standardUserDefaults] arrayForKey:kOptionsKey];;
+}
+
+- (NSArray *)writeDefaultOptionsToUserDefaults {
+    
+    NSArray *options = @[@{kOptionsTitleKey : @"Name",       kOptionsValueKey : @"name"},
+                         @{kOptionsTitleKey : @"Age",        kOptionsValueKey : @"age"},
+                         @{kOptionsTitleKey : @"Gender",     kOptionsValueKey : @"gender"},
+                         @{kOptionsTitleKey : @"Active",     kOptionsValueKey : @"active"},
+                         @{kOptionsTitleKey : @"Registered", kOptionsValueKey : @"registered"}];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:options forKey:kOptionsKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return options;
+}
+
+#pragma mark - <NSFetchedResultsControllerDelegate>
+
 - (NSFetchedResultsController *)fetchedResultsController {
     
     if (_fetchedResultsController) {
@@ -60,11 +102,7 @@
     
     fetchRequest.fetchBatchSize = 20;
     
-    
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSSortDescriptor *ageDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:YES];
-
-    fetchRequest.sortDescriptors = @[ageDescriptor, nameDescriptor];
+    fetchRequest.sortDescriptors = self.sortDescriptors;
     
     _fetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -92,7 +130,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell" forIndexPath:indexPath];
     
     [self configureCell:cell atIndexPath:indexPath];
     
@@ -145,15 +183,58 @@
     [self.tableView endUpdates];
 }
 
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"showSortOptions"]) {
+        
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        
+        TPPSortOptionsTableViewController *sortOptionsViewController = (TPPSortOptionsTableViewController *)navigationController.topViewController;
+        
+        __weak typeof(self) weakSelf = self;
+      
+        [sortOptionsViewController setSelection:^(NSArray *options) {
+            [weakSelf sortResultsUsingOptions:options];
+        }];
+    }
+
+}
+
 #pragma mark - Private Methods
 
+- (NSArray *)makeSortDescriptorsFromOptions:(NSArray *)options {
+    
+    NSMutableArray *sortDescriptors = [NSMutableArray array];
+    
+    for (NSDictionary *option in options) {
+        [sortDescriptors addObject:[NSSortDescriptor sortDescriptorWithKey:option[kOptionsValueKey] ascending:YES]];
+    }
+    
+    return sortDescriptors;
+}
+
+- (void)sortResultsUsingOptions:(NSArray *)options {
+    
+    NSLog(@"%@", options);
+    
+    self.sortDescriptors = [self makeSortDescriptorsFromOptions:options];
+    
+    self.fetchedResultsController = nil;
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+}
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     TPPPerson *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = person.name;
-    cell.detailTextLabel.text = person.email;
+    cell.detailTextLabel.text = person.gender;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", person.age];
 }
 
 
