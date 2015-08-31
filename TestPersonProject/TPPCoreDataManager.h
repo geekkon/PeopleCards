@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TPPParsedPerson;
+@class TPPPerson;
 
 @interface TPPCoreDataManager : NSObject
 
@@ -19,6 +19,6 @@
 - (void)clearData;
 
 - (void)addObjects:(NSArray *)objects;
-- (void)removeObject:(TPPParsedPerson *)object;
+- (void)removePerson:(TPPPerson *)person;
 
 @end

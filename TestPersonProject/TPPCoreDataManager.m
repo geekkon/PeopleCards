@@ -58,9 +58,13 @@
 //    [self saveContext];
 }
 
-- (void)removeObject:(TPPParsedPerson *)object {
-
+- (void)removePerson:(TPPPerson *)person {
+    
+    [self.managedObjectContext deleteObject:person];
+    
+//    [self saveContext];
 }
+
 
 #pragma mark - Getters
 

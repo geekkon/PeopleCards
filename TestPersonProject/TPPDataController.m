@@ -26,6 +26,11 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
 
 #pragma mark - Getters 
 
+- (BOOL)isEmpty {
+    
+    return YES;
+}
+
 - (NSManagedObjectContext *)context {
     
     return [TPPCoreDataManager sharedManager].context;
@@ -67,8 +72,9 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     [self loadDataWithRequest:request];
 }
 
-- (void)removeObject:(TPPPerson *)person {
-
+- (void)removePerson:(TPPPerson *)person {
+    
+    [[TPPCoreDataManager sharedManager] removePerson:person];
 }
 
 #pragma mark - Private
@@ -80,7 +86,7 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     [self.requestManager loadDataWithRequest:request completion:^(NSData *data, NSError *error) {
         
         if (error) {
-            weakSelf.completion(NO, error);
+            weakSelf.completion(error);
         } else {
             [weakSelf parseData:data];
         }
@@ -94,7 +100,7 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     [self.parser parseData:data completion:^(NSArray *objects, NSError *error) {
         
         if (error) {
-            weakSelf.completion(NO, error);
+            weakSelf.completion(error);
         } else {
             [weakSelf addObjects:objects];
         }
@@ -105,7 +111,7 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     
     [[TPPCoreDataManager sharedManager] addObjects:objects];
     
-    self.completion(YES, nil);
+    self.completion(nil);
 }
 
 

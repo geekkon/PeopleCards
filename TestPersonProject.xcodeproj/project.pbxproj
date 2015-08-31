@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B3A7901B94A1730029B281 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3A78F1B94A1730029B281 /* MBProgressHUD.m */; };
 		32FA3CA71B93450800F7A0D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA61B93450800F7A0D6 /* main.m */; };
 		32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA91B93450800F7A0D6 /* AppDelegate.m */; };
 		32FA3CB01B93450800F7A0D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FA3CAE1B93450800F7A0D6 /* Main.storyboard */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32B3A78E1B94A1730029B281 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		32B3A78F1B94A1730029B281 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		32FA3CA11B93450800F7A0D6 /* TestPersonProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPersonProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FA3CA51B93450800F7A0D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32FA3CA61B93450800F7A0D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32B3A78D1B94A1610029B281 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				32B3A78E1B94A1730029B281 /* MBProgressHUD.h */,
+				32B3A78F1B94A1730029B281 /* MBProgressHUD.m */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
 		32FA3C981B93450800F7A0D6 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,7 @@
 			children = (
 				32FA3CA81B93450800F7A0D6 /* AppDelegate.h */,
 				32FA3CA91B93450800F7A0D6 /* AppDelegate.m */,
+				32B3A78D1B94A1610029B281 /* Vendors */,
 				32FA3CCE1B9346E900F7A0D6 /* Model */,
 				32FA3CCA1B9345F000F7A0D6 /* View */,
 				32FA3CD51B9347CA00F7A0D6 /* Controller */,
@@ -309,6 +322,7 @@
 				32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */,
 				32FA3CCD1B9346E200F7A0D6 /* TPPDataController.m in Sources */,
 				32FA3CE71B93537900F7A0D6 /* TPPCoreDataManager.m in Sources */,
+				32B3A7901B94A1730029B281 /* MBProgressHUD.m in Sources */,
 				32FA3CA71B93450800F7A0D6 /* main.m in Sources */,
 				32FA3CEA1B93568200F7A0D6 /* TPPRequestManager.m in Sources */,
 				32FA3CED1B935CA300F7A0D6 /* TPPParser.m in Sources */,

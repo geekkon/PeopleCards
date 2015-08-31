@@ -10,14 +10,15 @@
 
 @class NSManagedObjectContext, TPPPerson;
 
-typedef void (^TPPDataControllerCompletion)(BOOL success, NSError *error);
+typedef void (^TPPDataControllerCompletion)(NSError *error);
 
 @interface TPPDataController : NSObject
 
+@property (nonatomic, getter = isEmpty) BOOL empty;
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 
 - (void)reloadDataWithCompletion:(TPPDataControllerCompletion)completion;
 
-- (void)removeObject:(TPPPerson *)person;
+- (void)removePerson:(TPPPerson *)person;
 
 @end

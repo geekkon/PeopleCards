@@ -7,6 +7,7 @@
 //
 
 #import "TPPPeopleTableViewController.h"
+#import "MBProgressHUD.h"
 #import "TPPSortOptionsTableViewController.h"
 #import <CoreData/NSFetchedResultsController.h>
 #import <CoreData/NSFetchRequest.h>
@@ -14,8 +15,9 @@
 #import "TPPDataController.h"
 #import "TPPPerson.h"
 
-
 @interface TPPPeopleTableViewController () <NSFetchedResultsControllerDelegate>
+
+@property (strong, nonatomic) MBProgressHUD *hud;
 
 @property (strong, nonatomic) TPPDataController *dataController;
 @property (strong, nonatomic) NSArray *sortDescriptors;
@@ -28,18 +30,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.dataController reloadDataWithCompletion:^(BOOL success, NSError *error) {
-
-    }];
+    if (self.dataController.isEmpty) {
+        
+        [self loadDataWithHUD:YES];
+    }
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self configureRefreshControl];
 }
 
 #pragma mark - Getters
+
+- (MBProgressHUD *)hud {
+    
+    if (!_hud) {
+        
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        
+        [self.view addSubview:_hud];
+    }
+    
+    return _hud;
+}
 
 - (TPPDataController *)dataController {
     
@@ -66,6 +77,33 @@
     return _sortDescriptors;
 }
 
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    if (_fetchedResultsController) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson" inManagedObjectContext:self.dataController.context];
+    
+    fetchRequest.fetchBatchSize = 20;
+    
+    fetchRequest.sortDescriptors = self.sortDescriptors;
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.dataController.context sectionNameKeyPath:nil cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+    NSError *error = nil;
+    if (![_fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _fetchedResultsController;
+}
+
 #pragma mark - User Defaults Methods
 
 - (NSArray *)readOptionsFromUserDefaults {
@@ -88,39 +126,6 @@
     return options;
 }
 
-#pragma mark - <NSFetchedResultsControllerDelegate>
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    if (_fetchedResultsController) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson" inManagedObjectContext:self.dataController.context];
-    
-    fetchRequest.fetchBatchSize = 20;
-    
-    fetchRequest.sortDescriptors = self.sortDescriptors;
-    
-    _fetchedResultsController =
-    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                        managedObjectContext:self.dataController.context
-                                          sectionNameKeyPath:nil
-                                                   cacheName:nil];
-    
-    _fetchedResultsController.delegate = self;
-    
-    NSError *error = nil;
-    if (![_fetchedResultsController performFetch:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _fetchedResultsController;
-}
-
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -138,20 +143,22 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        RSSChannel *channel = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//        [[RSSDataManager sharedManager] removeChannel:channel];
+        TPPPerson *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.dataController removePerson:person];
     }
 }
 
 #pragma mark - <NSFetchedResultsControllerDelegate>
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    
     [self.tableView beginUpdates];
 }
 
@@ -180,6 +187,7 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    
     [self.tableView endUpdates];
 }
 
@@ -203,6 +211,43 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)showAletWithError:(NSError *)error {
+    NSLog(@"%@", [error localizedDescription]);
+}
+
+- (void)configureRefreshControl {
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)refresh:(UIRefreshControl *)sender {
+    
+    [self loadDataWithHUD:NO];
+}
+
+- (void)loadDataWithHUD:(BOOL)showHUD {
+    
+    if (showHUD) {
+        
+        [self.hud show:YES];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.dataController reloadDataWithCompletion:^(NSError *error) {
+        
+        [weakSelf.hud hide:YES];
+        [weakSelf.refreshControl endRefreshing];
+        
+        if (error) {
+            
+            [weakSelf showAletWithError:error];
+        }
+    }];
+}
 
 - (NSArray *)makeSortDescriptorsFromOptions:(NSArray *)options {
     
@@ -236,12 +281,5 @@
     cell.detailTextLabel.text = person.gender;
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", person.age];
 }
-
-
-
-#pragma mark - Actions
-
-
-
 
 @end

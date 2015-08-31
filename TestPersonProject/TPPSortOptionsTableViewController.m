@@ -8,7 +8,7 @@
 
 #import "TPPSortOptionsTableViewController.h"
 
-NSString * const kOptionsKey = @"optionsKeyddddddd";
+NSString * const kOptionsKey      = @"optionsSavingKey";
 NSString * const kOptionsTitleKey = @"titleKey";
 NSString * const kOptionsValueKey = @"valueKey";
 
@@ -24,7 +24,6 @@ NSString * const kOptionsValueKey = @"valueKey";
     [super viewDidLoad];
     
     self.tableView.editing = YES;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +59,7 @@ NSString * const kOptionsValueKey = @"valueKey";
     return self.options;
 }
 
-#pragma mark - Table view data source
+#pragma mark - <UITableViewDataSource>
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
@@ -68,7 +67,7 @@ NSString * const kOptionsValueKey = @"valueKey";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+    
     return self.options.count;
 }
 
@@ -82,33 +81,25 @@ NSString * const kOptionsValueKey = @"valueKey";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
+    NSDictionary *option  = self.options[fromIndexPath.row];
+    
+    [self.options removeObjectAtIndex:fromIndexPath.row];
+    [self.options insertObject:option atIndex:toIndexPath.row];
+}
+
+#pragma mark - <UITableViewDelegate>
+
 - (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return NO;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return UITableViewCellEditingStyleNone;
 }
-
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    
-    NSDictionary *option  = self.options[fromIndexPath.row];
-    [self.options removeObjectAtIndex:fromIndexPath.row];
-    [self.options insertObject:option atIndex:toIndexPath.row];
-    
-}
-
-
-//// Override to support conditional rearranging of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // Return NO if you do not want the item to be re-orderable.
-//    return YES;
-//}
-
-#pragma mark - Private
-
 
 #pragma mark - Actions
 
