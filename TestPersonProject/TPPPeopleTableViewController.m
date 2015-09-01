@@ -52,7 +52,7 @@
     if (!_hud) {
         
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
-        
+                
         [self.view addSubview:_hud];
     }
     
