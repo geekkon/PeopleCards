@@ -16,6 +16,8 @@
 
 + (TPPCoreDataManager *)sharedManager;
 
+- (BOOL)isStorageEmpty;
+
 - (void)clearData;
 
 - (void)addObjects:(NSArray *)objects;

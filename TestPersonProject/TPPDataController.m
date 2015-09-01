@@ -28,7 +28,7 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
 
 - (BOOL)isEmpty {
     
-    return YES;
+    return [[TPPCoreDataManager sharedManager] isStorageEmpty];
 }
 
 - (NSManagedObjectContext *)context {
@@ -64,8 +64,7 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     
     self.completion = completion;
     
-
-//    [[TPPCoreDataManager sharedManager] clearData];
+    [[TPPCoreDataManager sharedManager] clearData];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URL]];
     
@@ -113,6 +112,5 @@ NSString * const URL = @"http://109.120.187.164:81/people.json";
     
     self.completion(nil);
 }
-
 
 @end

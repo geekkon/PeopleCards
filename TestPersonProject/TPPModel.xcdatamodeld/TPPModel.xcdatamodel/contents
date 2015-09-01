@@ -10,7 +10,7 @@
         <attribute name="personID" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
         <attribute name="pictureURL" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
-        <attribute name="registered" optional="YES" attributeType="String" defaultValueString="undefined" syncable="YES"/>
+        <attribute name="registered" optional="YES" attributeType="Date" defaultDateTimeInterval="0" syncable="YES"/>
     </entity>
     <elements>
         <element name="TPPPerson" positionX="-63" positionY="-18" width="128" height="195"/>

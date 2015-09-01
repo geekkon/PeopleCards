@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation TPPCoreDataManager
@@ -34,43 +36,98 @@
     return manager;
 }
 
+- (NSArray *)requestObjectsWithFullFlag:(BOOL)full {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.entity = [NSEntityDescription entityForName:@"TPPPerson" inManagedObjectContext:self.managedObjectContext];
+    
+    if (!full) {
+        fetchRequest.fetchLimit = 1;
+    }
+    
+    NSError *requestError = nil;
+    
+    NSArray *resultArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    
+    if (requestError) {
+        return nil;
+    }
+    
+    return resultArray;
+}
+
+- (BOOL)isStorageEmpty {
+    
+    NSArray *objecs = [self requestObjectsWithFullFlag:NO];
+    
+    return !objecs.count;
+}
+
 - (void)clearData {
     
-    NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
+    NSArray *objecs = [self requestObjectsWithFullFlag:YES];
+
+    if (objecs) {
+        
+        for (TPPPerson *person in objecs) {
+            [self.managedObjectContext deleteObject:person];
+        }
+        
+        [self saveContext];
+    }
+}
+
+- (BOOL)isValidPerson:(TPPParsedPerson *)person {
     
-    NSError *error = nil;
+    if ([person.pictureURL isKindOfClass:[NSNull class]]) {
+        
+        return NO;
+    }
     
-    NSURL *storeURL = store.URL;
+    if (!person.name || !person.age || !person.gender || !person.pictureURL || !person.phone || !person.email || !person.address || !person.registered) {
+        
+        return NO;
+    }
     
-    [self.persistentStoreCoordinator removePersistentStore:store error:&error];
-    [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
-    
-    self.persistentStoreCoordinator = nil;
+    return YES;
 }
 
 - (void)addObjects:(NSArray *)objects {
     
     for (TPPParsedPerson *parsedPerson in objects) {
         
-        [TPPPerson createPersonWithParsedPerson:parsedPerson inContext:self.managedObjectContext];
+        if ([self isValidPerson:parsedPerson]) {
+            [TPPPerson createPersonWithParsedPerson:parsedPerson inContext:self.managedObjectContext usingDateFormatter:self.dateFormatter];
+        }
     }
     
-//    [self saveContext];
+    [self saveContext];
 }
 
 - (void)removePerson:(TPPPerson *)person {
     
     [self.managedObjectContext deleteObject:person];
     
-//    [self saveContext];
+    [self saveContext];
 }
-
 
 #pragma mark - Getters
 
 - (NSManagedObjectContext *)context {
     
     return self.managedObjectContext;
+}
+
+- (NSDateFormatter *)dateFormatter {
+    
+    if (!_dateFormatter) {
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss ZZ";
+    }
+    
+    return _dateFormatter;
 }
 
 #pragma mark - Core Data stack

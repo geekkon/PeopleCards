@@ -22,8 +22,8 @@
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * phone;
 @property (nonatomic, retain) NSString * address;
-@property (nonatomic, retain) NSString * registered;
+@property (nonatomic, retain) NSDate   * registered;
 
-+ (void)createPersonWithParsedPerson:(TPPParsedPerson *)parsedPerson inContext:(NSManagedObjectContext *)context;
++ (void)createPersonWithParsedPerson:(TPPParsedPerson *)parsedPerson inContext:(NSManagedObjectContext *)context usingDateFormatter:(NSDateFormatter *)dateFormatter;
 
 @end

@@ -14,12 +14,14 @@
 #import <CoreData/NSEntityDescription.h>
 #import "TPPDataController.h"
 #import "TPPPerson.h"
+#include "TPPPersonTableViewCell.h"
 
 @interface TPPPeopleTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *hud;
 
 @property (strong, nonatomic) TPPDataController *dataController;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSArray *sortDescriptors;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
@@ -30,12 +32,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    [self configureRefreshControl];
+
     if (self.dataController.isEmpty) {
         
         [self loadDataWithHUD:YES];
     }
     
-    [self configureRefreshControl];
+    self.tableView.estimatedRowHeight = 172.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - Getters
@@ -50,6 +57,17 @@
     }
     
     return _hud;
+}
+
+- (NSDateFormatter *)dateFormatter {
+    
+    if (!_dateFormatter) {
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateFormat = @"dd'.'MM'.'yy'";
+    }
+    
+    return _dateFormatter;
 }
 
 - (TPPDataController *)dataController {
@@ -135,9 +153,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell" forIndexPath:indexPath];
+    TPPPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell" forIndexPath:indexPath];
     
-    [self configureCell:cell atIndexPath:indexPath];
+    TPPPerson *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [cell configureCellWithPerson:person usingDateFormatter:self.dateFormatter];
     
     return cell;
 }
@@ -170,15 +190,15 @@
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         default:
@@ -207,7 +227,6 @@
             [weakSelf sortResultsUsingOptions:options];
         }];
     }
-
 }
 
 #pragma mark - Private Methods
@@ -261,25 +280,14 @@
 }
 
 - (void)sortResultsUsingOptions:(NSArray *)options {
-    
-    NSLog(@"%@", options);
-    
+        
     self.sortDescriptors = [self makeSortDescriptorsFromOptions:options];
     
     self.fetchedResultsController = nil;
     
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
     
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    
-    TPPPerson *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.textLabel.text = person.name;
-    cell.detailTextLabel.text = person.gender;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", person.age];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

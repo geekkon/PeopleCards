@@ -77,7 +77,7 @@ NSString * const kOptionsValueKey = @"valueKey";
     NSDictionary *option = self.options[indexPath.row];
     
     cell.textLabel.text = option[kOptionsTitleKey];
-    
+        
     return cell;
 }
 

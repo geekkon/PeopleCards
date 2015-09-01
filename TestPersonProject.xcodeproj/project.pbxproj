@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		32B3A7901B94A1730029B281 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3A78F1B94A1730029B281 /* MBProgressHUD.m */; };
+		32B3A7941B94B0770029B281 /* TPPPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3A7931B94B0770029B281 /* TPPPersonTableViewCell.m */; };
+		32B3A7971B95C9420029B281 /* UIImageView+Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3A7961B95C9420029B281 /* UIImageView+Networking.m */; };
 		32FA3CA71B93450800F7A0D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA61B93450800F7A0D6 /* main.m */; };
 		32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA3CA91B93450800F7A0D6 /* AppDelegate.m */; };
 		32FA3CB01B93450800F7A0D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FA3CAE1B93450800F7A0D6 /* Main.storyboard */; };
@@ -39,6 +41,10 @@
 /* Begin PBXFileReference section */
 		32B3A78E1B94A1730029B281 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		32B3A78F1B94A1730029B281 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		32B3A7921B94B0770029B281 /* TPPPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPPersonTableViewCell.h; sourceTree = "<group>"; };
+		32B3A7931B94B0770029B281 /* TPPPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPPersonTableViewCell.m; sourceTree = "<group>"; };
+		32B3A7951B95C9420029B281 /* UIImageView+Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Networking.h"; sourceTree = "<group>"; };
+		32B3A7961B95C9420029B281 /* UIImageView+Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Networking.m"; sourceTree = "<group>"; };
 		32FA3CA11B93450800F7A0D6 /* TestPersonProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPersonProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FA3CA51B93450800F7A0D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32FA3CA61B93450800F7A0D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,10 +98,29 @@
 		32B3A78D1B94A1610029B281 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				32B3A7981B95CE080029B281 /* Category */,
 				32B3A78E1B94A1730029B281 /* MBProgressHUD.h */,
 				32B3A78F1B94A1730029B281 /* MBProgressHUD.m */,
 			);
 			name = Vendors;
+			sourceTree = "<group>";
+		};
+		32B3A7911B94B0490029B281 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				32B3A7921B94B0770029B281 /* TPPPersonTableViewCell.h */,
+				32B3A7931B94B0770029B281 /* TPPPersonTableViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		32B3A7981B95CE080029B281 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				32B3A7951B95C9420029B281 /* UIImageView+Networking.h */,
+				32B3A7961B95C9420029B281 /* UIImageView+Networking.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		32FA3C981B93450800F7A0D6 = {
@@ -163,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				32FA3CAE1B93450800F7A0D6 /* Main.storyboard */,
+				32B3A7911B94B0490029B281 /* Cell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -319,7 +345,9 @@
 				32FA3CF71B93D03500F7A0D6 /* TPPSortOptionsTableViewController.m in Sources */,
 				32FA3CAA1B93450800F7A0D6 /* AppDelegate.m in Sources */,
 				32FA3CDD1B934C8800F7A0D6 /* TPPModel.xcdatamodeld in Sources */,
+				32B3A7971B95C9420029B281 /* UIImageView+Networking.m in Sources */,
 				32FA3CD41B9347BC00F7A0D6 /* TPPPeopleTableViewController.m in Sources */,
+				32B3A7941B94B0770029B281 /* TPPPersonTableViewCell.m in Sources */,
 				32FA3CCD1B9346E200F7A0D6 /* TPPDataController.m in Sources */,
 				32FA3CE71B93537900F7A0D6 /* TPPCoreDataManager.m in Sources */,
 				32B3A7901B94A1730029B281 /* MBProgressHUD.m in Sources */,
